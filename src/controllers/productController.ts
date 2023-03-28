@@ -6,7 +6,7 @@ export const getProducts = async (req: Request, res: Response) => {
         const response = await db.query('SELECT * FROM products');
         res.json(response.rows);
     } catch (err) {
-        console.error(err.message);
+        console.error(err);
         res.json({ message: "Server error" });
     }
 }
@@ -20,7 +20,7 @@ export const createProduct = async (req: Request, res: Response) => {
         );
         res.json(response.rows[0]);
     } catch (err) {
-        console.error(err.message);
+        console.error(err);
         res.json({ message: "Server error" });
     }
 }
@@ -34,7 +34,7 @@ export const getProduct = async (req: Request, res: Response) => {
         );
         res.json(response.rows[0]);
     } catch (err) {
-        console.error(err.message);
+        console.error(err);
         res.json({ message: "Server error" });
     }
 }
@@ -49,7 +49,7 @@ export const updateProduct = async (req: Request, res: Response) => {
         );
         res.json(response.rows[0]);
     } catch (err) {
-        console.error(err.message);
+        console.error(err);
         res.json({ message: "Server error" });
     }
 }
@@ -63,7 +63,7 @@ export const deleteProduct = async (req: Request, res: Response) => {
         );
         res.json({ message: "Product deleted" });
     } catch (err) {
-        console.error(err.message);
+        console.error(err);
         res.json({ message: "Server error" });
     }
 }

@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -e ts --exec ts-node src/index.ts",
+    "start": "ts-node src/index.ts",
+    "build": "tsc",
+    "dev": "nodemon -e ts --exec ts-node src/index.ts",
     "tables": "ts-node src/createTables.ts",
     "mockup": "ts-node src/insertMockupData.ts"
   },

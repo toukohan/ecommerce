@@ -27,7 +27,7 @@ export const registerUser = async (req: Request, res: Response) => {
             res.json(response.rows[0]);
         }
         catch (err) {
-            console.error(err.message);
+            console.error(err);
             res.json({ message: "Server error" });
         }
     };
@@ -54,7 +54,7 @@ export const loginUser = async (req: Request, res: Response) => {
             res.json({ user, token });
         }
         catch (err) {
-            console.error(err.message);
+            console.error(err);
             res.json({ message: "Server error" });
         }
     }
@@ -71,7 +71,7 @@ export const getMe = async (req: AuthenticatedRequest, res: Response) => {
             res.json(response.rows[0]);
         }
         catch (err) {
-            console.error(err.message);
+            console.error(err);
             res.json({ message: "Server error" });
         }
     }    

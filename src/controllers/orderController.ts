@@ -6,7 +6,7 @@ export const getOrders = async (req: Request, res: Response) => {
         const response = await db.query('SELECT * FROM orders');
         res.json(response.rows);
     } catch (err) {
-        console.error(err.message);
+        console.error(err);
         res.json({ message: "Server error" });
     }
 };
@@ -20,7 +20,7 @@ export const createOrder = async (req: Request, res: Response) => {
         );
         res.json(response.rows[0]);
     } catch (err) {
-        console.error(err.message);
+        console.error(err);
         res.json({ message: "Server error" });
     }
 };
@@ -34,7 +34,7 @@ export const getOrder = async (req: Request, res: Response) => {
         );
         res.json(response.rows[0]);
     } catch (err) {
-        console.error(err.message);
+        console.error(err);
         res.json({ message: "Server error" });
     }
 };
@@ -49,7 +49,7 @@ export const updateOrder = async (req: Request, res: Response) => {
         );
         res.json(response.rows[0]);
     } catch (err) {
-        console.error(err.message);
+        console.error(err);
         res.json({ message: "Server error" });
     }
 };
@@ -63,7 +63,7 @@ export const deleteOrder = async (req: Request, res: Response) => {
         );
         res.json({ message: "Order deleted" });
     } catch (err) {
-        console.error(err.message);
+        console.error(err);
         res.json({ message: "Server error" });
     }
 };

@@ -7,7 +7,7 @@ export const getUsers = async (req: Request, res: Response) => {
         res.json(response.rows);
     }
     catch (err) {
-        console.error(err.message);
+        console.error(err);
         res.json({ message: "Server error" });
     }
 }
@@ -19,7 +19,7 @@ export const getUser = async (req: Request, res: Response) => {
         res.json(response.rows[0]);
     }
     catch (err) {
-        console.error(err.message);
+        console.error(err);
         res.json({ message: "Server error" });
     }
 }
@@ -34,7 +34,7 @@ export const createUser = async (req: Request, res: Response) => {
         res.json(response.rows[0]);
     }
     catch (err) {
-        console.error(err.message);
+        console.error(err);
         res.json({ message: "Server error" });
     }
 }
@@ -50,7 +50,7 @@ export const updateUser = async (req: Request, res: Response) => {
         res.json(response.rows[0]);
     }
     catch (err) {
-        console.error(err.message);
+        console.error(err);
         res.json({ message: "Server error" });
     }
 }
@@ -62,7 +62,7 @@ export const deleteUser = async (req: Request, res: Response) => {
         res.json({ message: "User deleted" });
     }
     catch (err) {
-        console.error(err.message);
+        console.error(err);
         res.json({ message: "Server error" });
     }
 };
