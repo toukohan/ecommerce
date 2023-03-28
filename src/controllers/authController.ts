@@ -9,6 +9,7 @@ const jwtSecret = process.env.ACCESS_TOKEN_SECRET as Secret;
 export const registerUser = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     try {
+        console.log("email: ", email);
         const userExists = await db.query(
             "SELECT * FROM users WHERE email = $1",
             [email]
@@ -16,6 +17,7 @@ export const registerUser = async (req: Request, res: Response) => {
             if (userExists.rows.length > 0) {
                 return res.json({ message: "User already exists" });
             }
+        console.log("userExists: ", userExists);
             
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
@@ -30,6 +32,8 @@ export const registerUser = async (req: Request, res: Response) => {
             console.error(err);
             res.json({ message: "Server error" });
         }
+       
+        
     };
 
 export const loginUser = async (req: Request, res: Response) => {

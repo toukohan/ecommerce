@@ -26,9 +26,10 @@ export const getUser = async (req: Request, res: Response) => {
 
 export const createUser = async (req: Request, res: Response) => {
     const { email, password, role } = req.body;
+    console.log(email, password, role)
     try {
         const response = await db.query(
-            "INSERT INTO users (email, password, role) VALUES ($1, $2, $3) RETURNING *",
+            "INSERT INTO users (email, password, role) VALUES ($1, $2, $3)",
             [email, password, role]
         );
         res.json(response.rows[0]);

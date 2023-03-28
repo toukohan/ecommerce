@@ -11,6 +11,11 @@ const pool = new Pool({
     port: 5432,
 });
 
+//insertData();
+
+
+
+
 const insertData = async () => {
     try {
         // need users here for this to work. Gonna add manually to get the hashed password. 
@@ -101,19 +106,19 @@ const insertData = async () => {
     }
 };
 
-insertData();
+
 
 const insertSpecificData = async () => {
     try {
          
 
-        const orders = await pool.query(`
-        INSERT INTO orders (customer_id, total, status) 
-        VALUES 
-        (1, 1099.99, 'completed'),
-        (2, 2269.97, 'processing'),
-        (3, 69.99, 'completed');
-        `);
+        // const orders = await pool.query(`
+        // INSERT INTO orders (customer_id, total, status) 
+        // VALUES 
+        // (1, 1099.99, 'completed'),
+        // (2, 2269.97, 'processing'),
+        // (3, 69.99, 'completed');
+        // `);
 
         const orderItems = await pool.query(`
         INSERT INTO order_items (order_id, product_id, quantity) 
@@ -167,4 +172,4 @@ const insertSpecificData = async () => {
     }
 };
 
-// insertSpecificData();;
+insertSpecificData();
