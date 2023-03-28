@@ -2,6 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import { config } from 'dotenv';
 
+import authRouter from './routes/authRoutes';
+import userRouter from './routes/userRoutes';
+import productRouter from './routes/productRoutes';
+import orderRouter from './routes/orderRoutes';
+
 config();
 
 const app = express();
@@ -15,9 +20,9 @@ app.get('/', (req, res) => {
 });
 
 
-app.use("/api/auth", require("./routes/authRoutes"));
-app.use("/api/users", require("./routes/userRoutes"));
-app.use("/api/products", require("./routes/productRoutes"));
+app.use("/api/auth", authRouter);
+app.use("/api/users", userRouter);
+app.use("/api/products", productRouter);
 
 
 app.listen(port, () => {

@@ -13,7 +13,8 @@ const pool = new Pool({
 
 const insertData = async () => {
     try {
-        
+        // need users here for this to work. Gonna add manually to get the hashed password. 
+
         const customers = await pool.query(`
         INSERT INTO customers (user_id, first_name, last_name, phone, address, city, phone_number) 
         VALUES 
@@ -100,7 +101,7 @@ const insertData = async () => {
     }
 };
 
-// insertData();
+insertData();
 
 const insertSpecificData = async () => {
     try {
@@ -166,4 +167,4 @@ const insertSpecificData = async () => {
     }
 };
 
-insertSpecificData();;
+// insertSpecificData();;
