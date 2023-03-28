@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon -e ts --exec ts-node src/index.ts",
-    "tables": "ts-node src/createTables.ts"
+    "tables": "ts-node src/createTables.ts",
+    "mockup": "ts-node src/insertMockupData.ts"
   },
   "author": "toukohan",
   "license": "ISC",
