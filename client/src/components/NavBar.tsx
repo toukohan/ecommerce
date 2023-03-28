@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   AppBar,
   Toolbar,
@@ -24,7 +23,7 @@ const sections =[
 const NavBar = () => {
 
   return (
-    <React.Fragment>
+    <>
       <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Typography
           component="h2"
@@ -40,7 +39,7 @@ const NavBar = () => {
           <SearchIcon />
         </IconButton>
         <Button variant="outlined" size="small">
-          Sign up
+         Sign up
         </Button>
       </Toolbar>
       <Toolbar
@@ -61,7 +60,7 @@ const NavBar = () => {
           </Link>
         ))}
       </Toolbar>
-    </React.Fragment>
+    </>
   );
 };
 

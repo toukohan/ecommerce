@@ -11,6 +11,17 @@ export const getProducts = async (req: Request, res: Response) => {
     }
 }
 
+export const getCategories = async (req: Request, res: Response) => {
+    try {
+        const response = await db.query('SELECT * FROM categories');
+        res.json(response.rows);
+    } catch (err) {
+        console.error(err);
+        res.json({ message: "Server error" });
+    }
+}
+
+
 export const createProduct = async (req: Request, res: Response) => {
     const { name, price, description, category_id, sub_category_id } = req.body;
     try {

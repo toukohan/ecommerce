@@ -1,6 +1,7 @@
 import { Box, Container, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
+import Categories from "../components/Categories";
 
 const Home = () => {
     return (
@@ -10,7 +11,7 @@ const Home = () => {
           Fancy E-Commerce Site
         </Typography>
         <NavBar />
-
+        <Categories />
         <Copyright />
       </Box>
     </Container>
