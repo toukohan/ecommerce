@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { AuthenticatedRequest } from '../types';
 import db from '../db';
 import bcrypt from 'bcryptjs';
 
@@ -50,5 +51,22 @@ export const loginUser = async (req: Request, res: Response) => {
             res.json({ message: "Server error" });
         }
     }
+
+export const getMe = async (req: AuthenticatedRequest, res: Response) => {
+    if(!req.user) {
+        return res.json({ message: "Not authorized" });
+    }
+    try {
+        const response = await db.query(
+            "SELECT * FROM users WHERE id = $1",
+            [req.user]
+            );
+            res.json(response.rows[0]);
+        }
+        catch (err) {
+            console.error(err.message);
+            res.json({ message: "Server error" });
+        }
+    }    
 
 
