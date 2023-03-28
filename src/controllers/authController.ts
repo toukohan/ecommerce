@@ -1,7 +1,10 @@
 import { Request, Response } from 'express';
 import { AuthenticatedRequest } from '../types';
+import jwt, { Secret } from 'jsonwebtoken';
 import db from '../db';
 import bcrypt from 'bcryptjs';
+
+const jwtSecret = process.env.ACCESS_TOKEN_SECRET as Secret;
 
 export const registerUser = async (req: Request, res: Response) => {
     const { email, password } = req.body;
@@ -44,7 +47,11 @@ export const loginUser = async (req: Request, res: Response) => {
             if (!isMatch) {
                 return res.json({ message: "Invalid credentials" });
             }
-            res.json(user);
+            const payload = {
+                sub: user.id,
+            };
+            const token = jwt.sign(payload, jwtSecret, { expiresIn: "1h" });
+            res.json({ user, token });
         }
         catch (err) {
             console.error(err.message);
