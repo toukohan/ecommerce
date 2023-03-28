@@ -1,10 +1,14 @@
+import { Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import NotFound from './pages/NotFound'
 
 function App() {
 
   return (
-    <main className="App">
-      <h1>Hello this is e-commerce!</h1>
-    </main>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/*" element={<NotFound />} />
+    </Routes>
   )
 }
 
