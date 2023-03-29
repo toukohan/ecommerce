@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { AuthenticatedRequest } from '../types';
+import { VerifiedRequest } from '../types';
 import jwt, { Secret } from 'jsonwebtoken';
 import db from '../db';
 import bcrypt from 'bcryptjs';
@@ -68,7 +68,8 @@ export const loginUser = async (req: Request, res: Response) => {
         }
     }
 
-export const getMe = async (req: AuthenticatedRequest, res: Response) => {
+export const getMe = async (req: VerifiedRequest, res: Response) => {
+    console.log("getMe")
     if(!req.user) {
         return res.json({ message: "Not authorized" });
     }

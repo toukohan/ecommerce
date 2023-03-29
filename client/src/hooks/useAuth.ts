@@ -1,9 +1,11 @@
 import { useContext } from 'react'
 import { UserContext } from '../context/UserProvider'
+import { useNavigate } from 'react-router-dom'
 import axios from '../api/axios'
 
 const useAuth = () => {
     const { setUser } = useContext(UserContext)
+    const navigate = useNavigate()
 
     const signIn = async (email: string, password: string) => {
         try {
@@ -14,8 +16,8 @@ const useAuth = () => {
             console.log(response.data);
             const user = response.data.user;
             const token = response.data.token;
-            
             setUser({ user, token });
+            navigate('/');
         } catch (error) {
             console.error(error);
         }
@@ -35,7 +37,7 @@ const useAuth = () => {
 
     const signOut = async () => {
         try {
-            const response = await axios.post('/api/auth/logout')
+            // const response = await axios.post('/api/auth/logout')
             setUser(null);
         } catch (error) {
             console.error(error);

@@ -47,7 +47,7 @@ const NavBar = () => {
         <IconButton>
           <SearchIcon />
         </IconButton>
-        {user && <p>{user.user.email}</p>}
+        {user && <Link sx={{ p: 1 }} href="/profile">{user.user.email}</Link>}
         {user === null ? (
         <Link href="/signin">
         <Button variant="outlined" size="small">

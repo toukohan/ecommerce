@@ -1,17 +1,18 @@
 import { createContext, useState, ReactNode } from 'react';
 
-interface UserContextData {
-    user: User | null;
-    setUser: (user: (User | null)) => void;
-}
-
-interface User {
+export interface User {
     user: {
         id: number;
         email: string;
     },
     token: string;
 }
+
+interface UserContextData {
+    user: User | null;
+    setUser: (user: (User | null)) => void;
+}
+
 
 interface UserProviderProps {
     children: ReactNode;

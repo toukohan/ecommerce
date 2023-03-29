@@ -8,6 +8,12 @@ const SignIn = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const handleSubmit = (event: FormEvent) => {
+        event.preventDefault();
+        signIn(email, password);
+
+    };
        
         return (
         <form>
@@ -23,7 +29,7 @@ const SignIn = () => {
             value={password}
             onChange={(event) => setPassword(event.target.value)}
         />
-        <button onClick={() => signIn(email, password)} >Sign In</button>
+        <button type="submit" onClick={handleSubmit}>Sign In</button>
         </form>
     );
     };

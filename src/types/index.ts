@@ -9,6 +9,10 @@ export interface User {
     updated_at?: Date;
 }
 
+export interface VerifiedRequest extends Request {
+    user?: any;
+}
+
 export interface AuthenticatedRequest extends Request {
     user: User;
 }
