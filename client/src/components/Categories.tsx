@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from '../api/axios'
+import './Categories.scss'
+import CategoryItem from './CategoryItem'
 
 const Categories = () => {
 
@@ -18,18 +20,17 @@ const Categories = () => {
     }, [])
 
     return (
-        <div>
+        <>
             {loading ? <h1>Loading...</h1> : (
-                <div>
+                <div className="categories-container">
                     {categories.map((category: any) => (
-                        <div key={category.id}>
-                            <h1>{category.name}</h1>
-                        </div>
+                        <CategoryItem key={category.id} category={category} />
                     ))}
                 </div>
             )}
-        </div>
+        </>
     )
 }
 
 export default Categories;
+

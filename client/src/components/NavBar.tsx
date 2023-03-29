@@ -26,14 +26,14 @@ const NavBar = () => {
     <>
       <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Typography
-          component="h2"
+          component="h1"
           variant="h5"
           color="inherit"
-          align="center"
+          align="left"
           noWrap
           sx={{ flex: 1 }}
         >
-          Hello
+          Fancy E-Commerce Site
         </Typography>
         <IconButton>
           <SearchIcon />
@@ -44,7 +44,7 @@ const NavBar = () => {
       </Toolbar>
       <Toolbar
         component="nav"
-        variant="dense"
+        variant="regular"
         sx={{ justifyContent: 'space-between', overflowX: 'auto' }}
       >
         {sections.map((section) => (
@@ -52,7 +52,7 @@ const NavBar = () => {
             color="inherit"
             noWrap
             key={section.title}
-            variant="body2"
+            variant="subtitle1"
             href={section.url}
             sx={{ p: 1, flexShrink: 0 }}
           >

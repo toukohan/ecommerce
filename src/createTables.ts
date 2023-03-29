@@ -127,6 +127,7 @@ const createTables = async () => {
     CREATE TABLE IF NOT EXISTS categories (
         id SERIAL PRIMARY KEY,
         name VARCHAR(50) NOT NULL,
+        image_url VARCHAR(255),
         created_at TIMESTAMP NOT NULL DEFAULT NOW(),
         updated_at TIMESTAMP
     );

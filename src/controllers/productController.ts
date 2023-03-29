@@ -21,6 +21,23 @@ export const getCategories = async (req: Request, res: Response) => {
     }
 }
 
+export const updateCategory = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { name, image_url } = req.body;
+    try {
+        const response = await db.query(
+            "UPDATE categories SET name = $1, image_url = $2 WHERE id = $3 RETURNING *",
+            [name, image_url, id]
+        );
+        res.json(response.rows[0]);
+    } catch (err) {
+        console.error(err);
+        res.json({ message: "Server error" });
+    }
+}
+
+
+
 
 export const createProduct = async (req: Request, res: Response) => {
     const { name, price, description, category_id, sub_category_id } = req.body;

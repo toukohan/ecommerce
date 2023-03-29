@@ -5,16 +5,14 @@ import Categories from "../components/Categories";
 
 const Home = () => {
     return (
-    <Container maxWidth="sm">
+    <>
       <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1"gutterBottom>
-          Fancy E-Commerce Site
-        </Typography>
+        
         <NavBar />
         <Categories />
         <Copyright />
       </Box>
-    </Container>
+    </>
     )
     }
 
