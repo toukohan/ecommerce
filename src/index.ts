@@ -11,12 +11,9 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 app.use(express.json());
-app.use(cors());
-
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
-
+app.use(cors({
+        origin: 'http://localhost:5173',
+}));
 
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);

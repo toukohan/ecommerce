@@ -17,7 +17,6 @@ export const registerUser = async (req: Request, res: Response) => {
             if (userExists.rows.length > 0) {
                 return res.json({ message: "User already exists" });
             }
-        console.log("userExists: ", userExists);
             
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
@@ -38,6 +37,7 @@ export const registerUser = async (req: Request, res: Response) => {
 
 export const loginUser = async (req: Request, res: Response) => {
     const { email, password } = req.body;
+    console.log("email: ", email);
     try {
         const response = await db.query(
             "SELECT * FROM users WHERE email = $1",
@@ -46,14 +46,19 @@ export const loginUser = async (req: Request, res: Response) => {
             if (response.rows.length === 0) {
                 return res.json({ message: "Invalid credentials" });
             }
-            const user = response.rows[0];
-            const isMatch = await bcrypt.compare(password, user.password);
+            const foundUser = response.rows[0];
+            const isMatch = await bcrypt.compare(password, foundUser.password);
             if (!isMatch) {
                 return res.json({ message: "Invalid credentials" });
             }
             const payload = {
-                sub: user.id,
+                sub: foundUser.id,
             };
+
+            const user = {
+                id: foundUser.id,
+                email: foundUser.email,
+            }
             const token = jwt.sign(payload, jwtSecret, { expiresIn: "1h" });
             res.json({ user, token });
         }

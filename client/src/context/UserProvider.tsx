@@ -6,9 +6,11 @@ interface UserContextData {
 }
 
 interface User {
-    id: number;
-    name: string;
-    email: string;
+    user: {
+        id: number;
+        email: string;
+    },
+    token: string;
 }
 
 interface UserProviderProps {

@@ -1,26 +1,16 @@
-import { useCallback, useState, useEffect } from 'react';
+import { FormEvent, useState } from 'react';
+import axios from '../api/axios'
 
 import useAuth from '../hooks/useAuth';
 
 const SignIn = () => {
     const { signIn } = useAuth();
-    
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    
-    useEffect(() => {
-        console.log(email, password);
-    }, [email, password]);
-
-    const handleSubmit =
-        async (event: React.FormEvent) => {
-        event.preventDefault();
-    
-        await signIn(email, password);
-    };
-    
-    return (
-        <form onSubmit={handleSubmit}>
+       
+        return (
+        <form>
         <input
             type="email"
             placeholder="E-mail"
@@ -33,7 +23,7 @@ const SignIn = () => {
             value={password}
             onChange={(event) => setPassword(event.target.value)}
         />
-        <button>Sign In</button>
+        <button onClick={() => signIn(email, password)} >Sign In</button>
         </form>
     );
     };
