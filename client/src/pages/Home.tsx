@@ -7,8 +7,6 @@ const Home = () => {
     return (
     <>
       <Box sx={{ my: 4 }}>
-        
-        <NavBar />
         <Categories />
         <Copyright />
       </Box>
@@ -23,7 +21,7 @@ function Copyright() {
       <Typography variant="body2" color="text.secondary" align="center">
         {'Copyright © '}
         <Link color="inherit" to="/">
-          Fancy 
+          Fancy Pants
         </Link>{' '}
         {new Date().getFullYear()}.
       </Typography>

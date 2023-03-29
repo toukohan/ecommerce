@@ -1,3 +1,8 @@
+import { Outlet } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '../context/UserProvider';
+import useAuth from '../hooks/useAuth';
+
 import {
   AppBar,
   Toolbar,
@@ -21,6 +26,10 @@ const sections =[
 ]
 
 const NavBar = () => {
+  const { user } = useContext(UserContext);
+  const { signOut } = useAuth();
+
+  console.log('user', user)
 
   return (
     <>
@@ -38,9 +47,17 @@ const NavBar = () => {
         <IconButton>
           <SearchIcon />
         </IconButton>
+        {user !== null ? (
+        <Link href="/signin">
         <Button variant="outlined" size="small">
-         Sign up
+         Sign in
         </Button>
+        </Link>
+        ) : (
+        <Button variant="outlined" size="small" onClick={ signOut }>
+          Sign out
+        </Button>
+        )}
       </Toolbar>
       <Toolbar
         component="nav"
@@ -60,6 +77,7 @@ const NavBar = () => {
           </Link>
         ))}
       </Toolbar>
+      <Outlet />
     </>
   );
 };
