@@ -47,7 +47,8 @@ const NavBar = () => {
         <IconButton>
           <SearchIcon />
         </IconButton>
-        {user !== null ? (
+        {user && <p>{user.user.email}</p>}
+        {user === null ? (
         <Link href="/signin">
         <Button variant="outlined" size="small">
          Sign in

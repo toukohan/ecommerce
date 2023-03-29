@@ -5,7 +5,6 @@ import axios from '../api/axios'
 const useAuth = () => {
     const { setUser } = useContext(UserContext)
 
-    console.log("type of setUser", typeof setUser);
     const signIn = async (email: string, password: string) => {
         try {
             const response = await axios.post('/api/auth/login', {
