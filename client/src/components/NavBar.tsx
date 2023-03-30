@@ -2,6 +2,9 @@ import { Outlet, Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserProvider';
 import useAuth from '../hooks/useAuth';
+import { CartContext } from '../context/CartProvider';
+import CartIcon from './CartIcon';
+import Cart from './Cart';
 
 import {
   AppBar,
@@ -27,11 +30,11 @@ const sections =[
 const NavBar = () => {
   const { userData } = useContext(UserContext);
   const { signOut } = useAuth();
-
+  const { cart, cartOpen, setCartOpen, setCart } = useContext(CartContext);
 
   return (
-    <>
-      <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
+    <nav>
+      <Toolbar sx={{ borderBottom: 1, borderColor: 'divider'}}>
         <Typography
           component="h1"
           variant="h5"
@@ -42,9 +45,7 @@ const NavBar = () => {
         >
           Fancy E-Commerce Site
         </Typography>
-        <Button onClick={() => console.log(userData)} variant="outlined" size="small">
-          Test user data
-        </Button>
+        
         <IconButton>
           <SearchIcon />
         </IconButton>
@@ -60,6 +61,14 @@ const NavBar = () => {
           Sign out
         </Button>
         )}
+        <Button variant="outlined" size="small" 
+          onClick={() => {
+            console.log(cartOpen)
+            setCartOpen(!cartOpen)}
+          }>
+          <CartIcon  />
+        </Button>
+        {cartOpen && <Cart />}
       </Toolbar>
       <Toolbar
         component="nav"
@@ -77,7 +86,7 @@ const NavBar = () => {
         ))}
       </Toolbar>
       <Outlet />
-    </>
+    </nav>
   );
 };
 
