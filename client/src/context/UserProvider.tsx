@@ -1,16 +1,18 @@
 import { createContext, useState, ReactNode } from 'react';
 
 export interface User {
-    user: {
-        id: number;
-        email: string;
-    },
+    id: number;
+    email: string;
+}
+
+export interface UserData {
+    user: User;
     token: string;
 }
 
 interface UserContextData {
-    user: User | null;
-    setUser: (user: (User | null)) => void;
+    userData: UserData | null;
+    setUserData: (user: (UserData | null)) => void;
 }
 
 
@@ -21,8 +23,8 @@ interface UserProviderProps {
 export const UserContext = createContext({} as UserContextData);
 
 export function UserProvider({ children }: UserProviderProps) {
-    const [user, setUser] = useState<User | null>(null);
-    const value = { user, setUser }
+    const [userData, setUserData] = useState<UserData | null>(null);
+    const value = { userData, setUserData }
 
     return (
         <UserContext.Provider value={ value }>

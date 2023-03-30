@@ -44,7 +44,7 @@ export const loginUser = async (req: Request, res: Response) => {
             [email]
             );
             if (response.rows.length === 0) {
-                return res.json({ message: "Invalid credentials" });
+                return res.json({ message: "No user found" });
             }
             const foundUser = response.rows[0];
             const isMatch = await bcrypt.compare(password, foundUser.password);
@@ -76,7 +76,7 @@ export const getMe = async (req: VerifiedRequest, res: Response) => {
     try {
         const response = await db.query(
             "SELECT * FROM users WHERE id = $1",
-            [req.user]
+            [req.user.sub]
             );
             res.json(response.rows[0]);
         }

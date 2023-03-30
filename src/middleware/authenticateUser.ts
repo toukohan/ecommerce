@@ -9,8 +9,11 @@ export const authenticateUser = async (
     res: Response,
     next: NextFunction
 ) => {
+
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
+    console.log("authHeader", authHeader)
+    console.log("token", token)
     if (token == null) return res.sendStatus(401);
 
     jwt.verify(token, jwtSecret, (err, user) => {

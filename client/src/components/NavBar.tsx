@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserProvider';
 import useAuth from '../hooks/useAuth';
@@ -8,8 +8,7 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  Button,
-  Link
+  Button
 } from '@mui/material';
 
 import SearchIcon from '@mui/icons-material/Search';
@@ -26,10 +25,9 @@ const sections =[
 ]
 
 const NavBar = () => {
-  const { user } = useContext(UserContext);
+  const { userData } = useContext(UserContext);
   const { signOut } = useAuth();
 
-  console.log('user', user)
 
   return (
     <>
@@ -44,12 +42,15 @@ const NavBar = () => {
         >
           Fancy E-Commerce Site
         </Typography>
+        <Button onClick={() => console.log(userData)} variant="outlined" size="small">
+          Test user data
+        </Button>
         <IconButton>
           <SearchIcon />
         </IconButton>
-        {user && <Link sx={{ p: 1 }} href="/profile">{user.user.email}</Link>}
-        {user === null ? (
-        <Link href="/signin">
+        {userData && <Link to="/profile">{userData.user.email}</Link>}
+        {userData === null ? (
+        <Link to="/signin">
         <Button variant="outlined" size="small">
          Sign in
         </Button>
@@ -67,12 +68,9 @@ const NavBar = () => {
       >
         {sections.map((section) => (
           <Link
-            color="inherit"
-            noWrap
+           
+            to={section.url}
             key={section.title}
-            variant="subtitle1"
-            href={section.url}
-            sx={{ p: 1, flexShrink: 0 }}
           >
             {section.title}
           </Link>

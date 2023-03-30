@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import SignIn from './pages/SignIn'
 import Profile from './pages/Profile'
 import NotFound from './pages/NotFound'
+import About from './pages/About'
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
     <Routes>
       <Route path="/" element={<NavBar />}>
         <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
