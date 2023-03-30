@@ -18,7 +18,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 const sections =[
     { title: 'Home', url: '/' },
     { title: 'About', url: '/about' },
-    { title: 'Contact', url: '/contact' },
+    { title: 'Products', url: '/products' },
     { title: 'Blog', url: '/blog' },
     { title: 'Careers', url: '/careers' },
 
@@ -69,7 +69,7 @@ const NavBar = () => {
         {sections.map((section) => (
           <Link
            
-            to={section.url}
+            to={{ pathname: `${section.url}`, search: `?category=all` }}
             key={section.title}
           >
             {section.title}

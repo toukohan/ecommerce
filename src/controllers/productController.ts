@@ -13,7 +13,7 @@ export const getProducts = async (req: Request, res: Response) => {
 
 export const getCategories = async (req: Request, res: Response) => {
     try {
-        const response = await db.query('SELECT * FROM categories');
+        const response = await db.query('SELECT * FROM categories ORDER BY id ASC');
         res.json(response.rows);
     } catch (err) {
         console.error(err);

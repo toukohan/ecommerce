@@ -173,3 +173,12 @@ const insertSpecificData = async () => {
 };
 
 insertSpecificData();
+
+// INSERT INTO products (name, description, price, image, category)
+// VALUES ('Dell XPS Desktop', 'Powerful desktop computer with 16GB RAM and 1TB SSD', 1299.99, 'dell-xps-desktop.jpg', 'Desktops');
+
+// INSERT INTO products (name, description, price, image, category)
+// VALUES ('HP Pavilion Desktop', 'Affordable desktop computer with 8GB RAM and 512GB SSD', 599.99, 'hp-pavilion-desktop.jpg', 'Desktops');
+
+// INSERT INTO products (name, description, price, image, category)
+// VALUES ('Apple iMac', 'Sleek all-in-one desktop computer with Retina display', 1899.00, 'apple-imac.jpg', 'Desktops');
