@@ -75,11 +75,18 @@ export const getMe = async (req: VerifiedRequest, res: Response) => {
         return res.json({ message: "Not authorized" });
     }
     try {
-        const response = await db.query(
+        const userData = await db.query(
             "SELECT * FROM users WHERE id = $1",
             [req.user.sub]
             );
-            res.json(response.rows[0]);
+        
+        const customerData = await db.query(
+            "SELECT * FROM customers WHERE user_id = $1",
+            [req.user.sub]
+            );
+            const user = userData.rows[0];
+            const customer = customerData.rows[0];
+            res.json({ user, customer });
         }
         catch (err) {
             console.error(err);
