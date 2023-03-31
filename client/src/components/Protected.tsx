@@ -13,8 +13,9 @@ const Protected = ({children}: ProtectedProps) => {
         return <h1>Not authorized</h1>;
     }
 
-
-    return children;
+    return (<>
+    {children}
+    </>)
 }
 
 export default Protected;

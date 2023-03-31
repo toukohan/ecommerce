@@ -10,11 +10,10 @@ const CartIcon = () => {
     
     return (
         
-        <IconButton>
+       
             <Badge badgeContent={cart.length} color="secondary">
             <ShoppingCartIcon />
             </Badge>
-        </IconButton>
         
     );
     };

@@ -16,7 +16,7 @@ import {
 
 import SearchIcon from '@mui/icons-material/Search';
 
-import MenuIcon from '@mui/icons-material/Menu';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 const sections =[
     { title: 'Home', url: '/' },
@@ -49,6 +49,9 @@ const NavBar = () => {
         <IconButton>
           <SearchIcon />
         </IconButton>
+        <Link to="/dashboard">
+          <Button>Dashboard</Button>
+        </Link>
         {userData && <Link to="/profile">{userData.user.email}</Link>}
         {userData === null ? (
         <Link to="/signin">
