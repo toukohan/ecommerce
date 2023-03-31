@@ -8,6 +8,7 @@ import About from './pages/About'
 import ProductList from './components/ProductList'
 import Dashboard from './pages/Dashboard'
 import Protected from './components/Protected'
+import Checkout from './pages/Checkout'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="products" element={<ProductList />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="checkout" element={<Checkout />} />
         <Route path="dashboard" 
               element={<Protected>
                           <Dashboard />

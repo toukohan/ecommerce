@@ -1,0 +1,42 @@
+.checkout-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px 80px;
+    
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  
+  margin: 50px auto;
+  button {
+    margin-left: auto;
+    margin-top: 50px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    input {
+      width: 100%;
+      height: 50px;
+      margin: 10px 0;
+      padding: 0 10px;
+      font-size: 16px;
+      border: 1px solid darkgrey;
+      border-radius: 5px;
+    }
+  }
+}
+
+.checkout-items {
+    width: 400px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h2 {
+        margin: 10px 0;
+    }
+}
