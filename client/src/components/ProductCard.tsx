@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { CartContext, CartItem } from '../context/CartProvider';
+import { useSelector, useDispatch } from 'react-redux';
+import { CartItem } from '../context/CartProvider';
 import { Button } from '@mui/material';
 import './ProductCard.scss'
 
@@ -11,17 +11,27 @@ export interface Product {
     category: string;
  }
 
+
 interface ProductCardProps {
     product: Product;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const { cart, setCart } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const cart = useSelector((state: any) => state.cart);
   const { name, price, image_url } = product;
-  const cartItem: CartItem = { product, quantity: 1 };
-  // todo type?
+  const cartItem: CartItem = { ...product, quantity: 1 };
+
   const handleCart = () => {
-    setCart((prev: any) => [...prev, cartItem]);
+    const isInCart = cart.cartItems.find((item: any) => item.id === cartItem.id);
+    console.log("Is in cart:", isInCart)
+    console.log("------------------")
+    if (isInCart) {
+      isInCart.quantity++;
+      dispatch({ type: 'INCREASE', payload: isInCart });
+      return;
+    }
+    dispatch({ type: 'ADD_TO_CART', payload: cartItem })
   }
   
   return (

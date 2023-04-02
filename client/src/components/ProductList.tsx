@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from '../api/axios';
 import ProductCard from './ProductCard';
 import './ProductList.scss'
@@ -8,14 +9,14 @@ const ProductList = () => {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const myParamValue = queryParams.get('category');
-    console.log(myParamValue);
     
-    const [products, setProducts] = useState([]);
+    const dispatch = useDispatch();
+    const { products } = useSelector((state: any) => state.products);
 
     const getProducts = async () => {
         const { data } = await axios.get('/api/products');
         const filteredData = data.filter((product: any) => product.category === myParamValue?.toLowerCase());
-        setProducts(filteredData);
+        dispatch({ type: 'SET_PRODUCTS', payload: filteredData });
     };
 
 

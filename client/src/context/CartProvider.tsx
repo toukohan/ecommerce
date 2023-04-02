@@ -1,8 +1,7 @@
 import { createContext, ReactNode, useState } from 'react';
 import { Product } from './ProductsProvider';
 
-export interface CartItem {
-    product: Product;
+export interface CartItem extends Product {
     quantity: number;
 }
 // todo type?

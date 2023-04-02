@@ -1,19 +1,25 @@
 import { Link } from 'react-router-dom';
-import { useContext, useState } from 'react';
-import { CartContext } from '../context/CartProvider';
 import { Button } from '@mui/material';
 import { Delete } from '@mui/icons-material';
+import { useSelector, useDispatch } from 'react-redux';
 import './Cart.scss';
 
-const Cart = () => {
-    const { cart, setCart } = useContext(CartContext);
+interface Item {
+    id: number;
+    name: string;
+    price: number;
+    quantity?: number;
+}
 
+const Cart = () => {
+    const cart = useSelector((state: any) => state.cart);
+    const dispatch = useDispatch();
     const handleClearCart = () => {
-        setCart([]);
+        dispatch({ type: 'CLEAR_CART' });
     };
 
     const handleRemoveItem = (id: number) => {
-        setCart((prev: any) => prev.filter((item: any) => item.product.id !== id));
+        dispatch({ type: 'DECREASE', payload: id });
     };
 
     return (
@@ -21,10 +27,10 @@ const Cart = () => {
             <h1>Cart</h1>
             
             <div className="cart-items">
-                {cart.map(({product, quantity}) => (
-                    <div className="cart-item">
-                        <p>{quantity} x {product.name} <span onClick={() => handleRemoveItem(product.id)}>❌</span></p>
-                        <p>{product.price}</p>
+                {cart.cartItems.map((item: Item) => (
+                    <div className="cart-item" key={item.id}>
+                        <p>{item.quantity} x {item.name} <span className="remove-item" onClick={() => handleRemoveItem(item.id)}>❌</span></p>
+                        <p>{item.price * (item.quantity || 1)}</p>
                         
                     </div>
                 ))}

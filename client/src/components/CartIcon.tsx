@@ -1,17 +1,14 @@
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Badge, IconButton } from '@mui/material';
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { CartContext } from '../context/CartProvider';
+import { useSelector } from 'react-redux';
 import './CartIcon.scss';
 
 const CartIcon = () => {
-    const { cart } = useContext(CartContext);
-    
+    const { cartItems } = useSelector((state: any) => state.cart);
     return (
         
        
-            <Badge badgeContent={cart.length} color="secondary">
+            <Badge badgeContent={cartItems.length} color="secondary">
             <ShoppingCartIcon />
             </Badge>
         

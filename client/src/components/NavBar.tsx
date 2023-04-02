@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { UserContext } from '../context/UserProvider';
 import useAuth from '../hooks/useAuth';
 import { CartContext } from '../context/CartProvider';
+import { useSelector, useDispatch } from 'react-redux';
 import CartIcon from './CartIcon';
 import Cart from './Cart';
 
@@ -30,7 +31,8 @@ const sections =[
 const NavBar = () => {
   const { userData } = useContext(UserContext);
   const { signOut } = useAuth();
-  const { cart, cartOpen, setCartOpen, setCart } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const { hidden } = useSelector((state: any) => state.cart);
 
   return (
     <nav>
@@ -66,12 +68,11 @@ const NavBar = () => {
         )}
         <Button variant="outlined" size="small" 
           onClick={() => {
-            console.log(cartOpen)
-            setCartOpen(!cartOpen)}
-          }>
+            dispatch({ type: 'TOGGLE_CART_HIDDEN'});
+          }}>
           <CartIcon  />
         </Button>
-        {cartOpen && <Cart />}
+        {!hidden && <Cart />}
       </Toolbar>
       <Toolbar
         component="nav"
