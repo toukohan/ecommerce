@@ -19,7 +19,7 @@ const Cart = () => {
     };
 
     const handleRemoveItem = (id: number) => {
-        dispatch({ type: 'DECREASE', payload: id });
+        dispatch({ type: 'REMOVE_ITEM', payload: id });
     };
 
     return (
