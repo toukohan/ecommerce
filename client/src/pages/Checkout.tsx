@@ -1,6 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
-import { CartContext } from '../context/CartProvider';
+import { CartContext, CartItem } from '../context/CartProvider';
 import { UserContext, User } from '../context/UserProvider';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@mui/material';
 import axios from '../api/axios';
 import './Checkout.scss';
@@ -17,7 +18,8 @@ interface Customer extends User {
 const Checkout = () => {
     const { userData } = useContext(UserContext);
     const [customer, setCustomer] = useState<Customer| null>(null)
-    const { cart, setCart, setCartOpen } = useContext(CartContext);
+    const dispatch = useDispatch();
+    const cart = useSelector((state: any) => state.cart);
 
     const getCustomer = async () => {
         const response = await axios.get('/api/auth/me');
@@ -28,7 +30,7 @@ const Checkout = () => {
         if(userData?.user !== null) {
             getCustomer();
         }
-        setCartOpen(false);
+        dispatch({ type: 'TOGGLE_CART_HIDDEN', payload: true })
     }, [userData]);
 
     const handleSubmit = async (event: any) => {
@@ -50,10 +52,10 @@ const Checkout = () => {
                 </form>
             </div>
             <div className="checkout-items">
-                {cart.map(({product, quantity}) => (
+                {cart.cartItems.map((item: CartItem) => (
                     <div className="checkout-item">
-                        <p>{quantity} x {product.name}</p>
-                        <p>{product.price}</p>
+                        <p>{item.quantity} x {item.name}</p>
+                        <p>{item.price}</p>
                     </div>
                 ))}
             </div>
